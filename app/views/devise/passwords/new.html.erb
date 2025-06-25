@@ -1,16 +1,30 @@
-<h2>Forgot your password?</h2>
+<div class="min-h-screen flex items-center justify-center bg-base-100 px-2">
+  <div class="card shadow-xl bg-white w-full max-w-md mx-auto">
+    <div class="card-body">
+      <h2 class="text-2xl font-bold text-primary text-center mb-2">
+        <span class="text-primary">FureAi</span> <span class="text-base-content">パスワードリセット</span>
+      </h2>
+      <p class="text-center text-base-content mb-6">メールアドレスを入力してください</p>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="form-control mb-4">
+          <%= f.label :email, "メールアドレス", class: "label font-semibold text-base-content" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered w-full text-base-content placeholder:text-gray-400" %>
+        </div>
+
+        <div class="form-control mt-6">
+          <%= f.submit "リセット手順を送信", class: "btn btn-primary w-full text-white font-bold shadow-md hover:brightness-110 transition" %>
+        </div>
+      <% end %>
+
+      <div class="divider">または</div>
+      <div class="text-center space-x-2">
+        <%= link_to "ログインに戻る", new_user_session_path, class: "link text-blue-400 hover:text-blue-600 font-semibold underline transition-colors" %>
+        <span class="text-gray-400">|</span>
+        <%= link_to "新規登録はこちら", new_user_registration_path, class: "link text-blue-400 hover:text-blue-600 font-semibold underline transition-colors" %>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
