@@ -1,0 +1,46 @@
+<div class="min-h-screen flex items-center justify-center bg-base-100 px-2">
+  <div class="card shadow-xl bg-white w-full max-w-md mx-auto">
+    <div class="card-body">
+      <h2 class="text-2xl font-bold text-primary text-center mb-2">
+        <span class="text-primary">FureAi</span> <span class="text-base-content">新規登録</span>
+      </h2>
+      <p class="text-center text-base-content mb-6">あなたの心に寄り添うAIチャットサービス</p>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="form-control mb-4">
+          <%= f.label :name, "ユーザー名", class: "label font-semibold text-base-content" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input input-bordered w-full text-base-content placeholder:text-gray-400" %>
+        </div>
+
+        <div class="form-control mb-4">
+          <%= f.label :email, "メールアドレス", class: "label font-semibold text-base-content" %>
+          <%= f.email_field :email, autocomplete: "email", class: "input input-bordered w-full text-base-content placeholder:text-gray-400" %>
+        </div>
+
+        <div class="form-control mb-4">
+          <%= f.label :password, "パスワード", class: "label font-semibold text-base-content" %>
+          <% if @minimum_password_length %>
+            <span class="label-text-alt text-gray-500">（<%= @minimum_password_length %>文字以上）</span>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered w-full text-base-content placeholder:text-gray-400" %>
+        </div>
+
+        <div class="form-control mb-4">
+          <%= f.label :password_confirmation, "パスワード（確認）", class: "label font-semibold text-base-content" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered w-full text-base-content placeholder:text-gray-400" %>
+        </div>
+
+        <div class="form-control mt-6">
+          <%= f.submit "新規登録", class: "btn btn-primary w-full text-white font-bold shadow-md hover:brightness-110 transition" %>
+        </div>
+      <% end %>
+
+      <div class="divider">または</div>
+      <div class="text-center space-x-2">
+        <%= link_to "ログインはこちら", new_user_session_path, class: "link text-blue-400 hover:text-blue-600 font-semibold underline transition-colors" %>
+      </div>
+    </div>
+  </div>
+</div>
