@@ -22,6 +22,11 @@ gem "tailwindcss-ruby", "3.4.17"
 
 gem "devise"
 
+# OpenAI API用
+gem "ruby-openai"
+# 非同期ジョブ用
+gem "sidekiq"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -54,6 +59,8 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  # 環境変数管理
+  gem "dotenv-rails"
 end
 
 group :test do
