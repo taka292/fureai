@@ -1,4 +1,5 @@
 <!-- app/views/chats/show.html.erb -->
+<%= turbo_stream_from "#{dom_id(@chat)}_messages" %>
 <div class="min-h-screen bg-gray-50 flex flex-col items-stretch">
   <!-- チャット全体のラッパー -->
   <div class="w-full flex flex-col flex-1 pb-24 bg-transparent">
@@ -31,37 +32,11 @@
     </div>
 
     <!-- メッセージ一覧 -->
-    <div class="space-y-4 flex-1 w-full px-2">
-      <% @messages.each do |message| %>
-        <% if message.user_id.present? %>
-          <!-- ユーザーメッセージ（右寄せ） -->
-          <div class="flex justify-end items-end">
-            <div class="bg-teal-400 text-white rounded-2xl px-4 py-3 max-w-xs text-base shadow">
-              <%= message.content %>
-            </div>
-            <span class="text-xs text-gray-400 ml-2"><%= message.created_at.strftime('%H:%M') %></span>
-          </div>
-        <% else %>
-          <!-- AIメッセージ（左寄せ） -->
-          <div class="flex items-end">
-            <div class="w-8 h-8 rounded-full bg-gray-200 mr-2"></div>
-            <div class="bg-gray-100 text-gray-800 rounded-2xl px-4 py-3 max-w-xs text-base shadow">
-              <%= message.content %>
-            </div>
-            <span class="text-xs text-gray-400 ml-2"><%= message.created_at.strftime('%H:%M') %></span>
-          </div>
-        <% end %>
-      <% end %>
+    <div id="<%= dom_id(@chat) %>_messages" class="space-y-2 flex-1 w-full px-2 py-4 overflow-y-auto">
+      <%= render @messages %>
     </div>
 
     <!-- 入力欄 -->
-    <div class="fixed bottom-0 left-0 w-full flex justify-center bg-transparent">
-      <div class="w-full bg-white border-t py-3 px-4 flex items-center">
-        <%= form_with(model: [@chat, Message.new], local: true, class: "flex w-full") do |form| %>
-          <%= form.text_field :content, placeholder: "メッセージを入力", class: "flex-1 rounded-full border px-4 py-2 mr-2 focus:outline-none" %>
-          <%= form.submit "送信", class: "bg-teal-500 text-white rounded-full px-4 py-2 hover:bg-teal-600 transition" %>
-        <% end %>
-      </div>
-    </div>
+    <%= render partial: "messages/form", locals: { chat: @chat } %>
   </div>
 </div>
