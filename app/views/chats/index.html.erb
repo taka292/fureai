@@ -1,0 +1,28 @@
+<!-- app/views/chats/index.html.erb -->
+<div class="max-w-2xl mx-auto mt-8">
+  <div class="flex items-center justify-between mb-4">
+    <div class="flex-1 flex justify-center">
+      <h1 class="text-xl font-bold text-teal-700 text-center">FureAi トーク一覧</h1>
+    </div>
+    <%= link_to '＋ トーク新規作成', new_chat_path, class: "ml-2 px-3 py-2 bg-teal-500 text-white rounded-lg shadow hover:bg-teal-600 transition whitespace-nowrap text-sm" %>
+  </div>
+  <div class="bg-white rounded-lg shadow divide-y">
+    <% @chats.each do |chat| %>
+      <%= link_to chat_path(chat), class: "block" do %>
+        <div class="flex items-start px-4 py-3 hover:bg-teal-50 transition">
+          <!-- 画像は将来ここに <img ...> で -->
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gray-200 mr-4"></div>
+          <div class="flex-1 min-w-0">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-gray-900 text-base"><%= chat.ai_character.name %></span>
+              <span class="text-xs text-gray-400 ml-2"><%= l(chat.updated_at, format: :short) %></span>
+            </div>
+            <div class="text-gray-700 text-sm truncate">
+              <%= chat.messages.last&.content&.truncate(40) || 'まだ会話がありません' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
