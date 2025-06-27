@@ -15,11 +15,52 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
   <body class="min-h-screen bg-base">
+    <!-- ヘッダー（チャット詳細ページ以外で表示） -->
+    <% unless controller_name == 'chats' && action_name == 'show' %>
+      <!-- ログイン・ログアウトボタン（右上固定） -->
+      <div class="fixed top-4 right-6 z-50 flex items-center gap-3">
+        <% if user_signed_in? %>
+          <div class="flex items-center gap-2 px-3 py-2">
+            <div class="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary text-sm">person</span>
+            </div>
+            <span class="text-sm font-medium text-text"><%= current_user.name %></span>
+          </div>
+          <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline btn-sm" %>
+        <% else %>
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary btn-sm" %>
+          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline btn-sm" %>
+        <% end %>
+      </div>
+    <% end %>
+
     <%= yield %>
+
+    <!-- フッターナビバー（チャット詳細ページ以外で表示） -->
+    <% unless controller_name == 'chats' && action_name == 'show' %>
+      <footer class="fixed bottom-0 left-0 w-full bg-white border-t flex justify-around items-center py-2 z-50">
+        <!-- ホーム -->
+        <%= link_to root_path, class: "flex flex-col items-center text-primary" do %>
+          <span class="material-symbols-outlined text-2xl">home</span>
+          <span class="text-xs">ホーム</span>
+        <% end %>
+        <!-- トーク一覧 -->
+        <%= link_to chats_path, class: "flex flex-col items-center text-primary" do %>
+          <span class="material-symbols-outlined text-2xl">chat</span>
+          <span class="text-xs">トーク一覧</span>
+        <% end %>
+        <!-- 体調管理 -->
+        <%= link_to root_path, class: "flex flex-col items-center text-primary" do %>
+          <span class="material-symbols-outlined text-2xl">monitor_heart</span>
+          <span class="text-xs">体調管理</span>
+        <% end %>
+      </footer>
+    <% end %>
   </body>
 </html>
