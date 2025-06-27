@@ -6,10 +6,10 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @chat = current_user.chats.find(params[:chat_id])
+    @chat = Chat.find_or_create_by(id: params[:chat_id])
     @message = @chat.messages.create(message_params.merge(role: "user"))
-    
-    # Sidekiqジョブを実行
+    # ジョブを定義する
+    # perform_syncはジョブを非同期で実行するためsidekiqのメソッド
     GetAiResponse.perform_async(@message.chat_id)
 
     respond_to do |format|
