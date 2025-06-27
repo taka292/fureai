@@ -4,8 +4,7 @@
     <% unless message.user? %>
       <!-- アイコン（相手） -->
       <div class="w-8 h-8 rounded-full bg-gray-200 mr-2 flex-shrink-0 flex items-center justify-center">
-        <!-- アイコン画像は任意で差し替え -->
-        <%= image_tag 'dog_icon.png', alt: 'AI', class: "w-8 h-8" if Rails.application.assets.find_asset('dog_icon.png') %>
+        🐶
       </div>
     <% end %>
     <div class="<%= message.user? ? 'bg-teal-100 text-gray-800' : 'bg-gray-200 text-gray-800' %> rounded-2xl px-4 py-2 max-w-xs md:max-w-lg break-words shadow relative">
@@ -17,7 +16,7 @@
     <% if message.user? %>
       <!-- アイコン（自分） -->
       <div class="w-8 h-8 rounded-full bg-teal-100 ml-2 flex-shrink-0 flex items-center justify-center">
-        <%= image_tag 'user_icon.png', alt: 'You', class: "w-8 h-8" if Rails.application.assets.find_asset('user_icon.png') %>
+        🙂
       </div>
     <% end %>
   </div>
