@@ -27,6 +27,8 @@ gem "ruby-openai"
 # 非同期ジョブ用
 gem "sidekiq"
 
+gem "redis"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
