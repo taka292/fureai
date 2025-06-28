@@ -28,6 +28,16 @@ class ChatsController < ApplicationController
     end
   end
 
+  def clear_messages
+    @chat = current_user.chats.find(params[:id])
+    @chat.messages.destroy_all
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to @chat, notice: 'メッセージを削除しました。' }
+    end
+  end
+
   private
 
   def create_default_ai
