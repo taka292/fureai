@@ -26,5 +26,8 @@ Rails.application.routes.draw do
   # チャット機能
   resources :chats do
     resources :messages, only: %i[new create]
+    member do
+      post :clear_messages
+    end
   end
 end

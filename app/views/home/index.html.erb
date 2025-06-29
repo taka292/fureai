@@ -20,27 +20,17 @@
 
       <!-- CTAボタン -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-        <button class="btn btn-primary btn-lg text-lg px-8">
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-          </svg>
+        <%= link_to chats_path, class: "btn btn-primary btn-lg text-lg px-8" do %>
+          <span class="material-symbols-outlined mr-2">chat</span>
           今すぐ始める
-        </button>
-        <button class="btn btn-outline btn-lg text-lg px-8">
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-          詳しく見る
-        </button>
+        <% end %>
       </div>
 
       <!-- 特徴アイコン -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
         <div class="card text-center">
           <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-            </svg>
+            <span class="material-symbols-outlined text-primary text-3xl">favorite</span>
           </div>
           <h3 class="text-lg font-semibold text-text mb-2">温かいAI</h3>
           <p class="text-textSub">無機質な返答ではなく、人間のような温かみのある対話を提供</p>
@@ -48,9 +38,7 @@
 
         <div class="card text-center">
           <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
-            </svg>
+            <span class="material-symbols-outlined text-primary text-3xl">settings</span>
           </div>
           <h3 class="text-lg font-semibold text-text mb-2">カスタマイズ可能</h3>
           <p class="text-textSub">気分や好みに応じてAIの性格や見た目を自由に設定</p>
@@ -58,9 +46,7 @@
 
         <div class="card text-center">
           <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-            </svg>
+            <span class="material-symbols-outlined text-primary text-3xl">analytics</span>
           </div>
           <h3 class="text-lg font-semibold text-text mb-2">メンタル管理</h3>
           <p class="text-textSub">気持ちの変化を記録し、自分の心の流れを可視化</p>
@@ -77,53 +63,23 @@
   </div>
   <div class="mt-2 text-primary font-bold text-sm">メインパートナー</div>
   <div class="text-xl font-bold text-text">FureAi</div>
-  <button class="btn btn-primary btn-wide mt-3 font-bold shadow">
-    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-    </svg>
+  <%= link_to chats_path, class: "btn btn-primary btn-wide mt-3 font-bold shadow" do %>
+    <span class="material-symbols-outlined mr-2">chat</span>
     トークをみる
-  </button>
+  <% end %>
 </div>
-
 
 <!-- 日記カード -->
 <div class="mx-auto mt-8 max-w-md mb-16">
   <div class="card bg-base-100 shadow rounded-xl p-4">
     <div class="font-bold text-primary flex items-center ">
-      <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9"></path>
-      </svg>
+      <span class="material-symbols-outlined mr-1">edit_note</span>
       6月24日の日記
     </div>
     <div class="text-xs text-gray-500 mt-1">2025年6月24日</div>
     <div class="mt-2 text-gray-700">（ここに日記本文が入ります）</div>
   </div>
 </div>
-
-<!-- 下部ナビゲーションバー -->
-<footer class="fixed bottom-0 left-0 w-full bg-white border-t flex justify-around items-center py-2 z-50">
-  <!-- ホーム -->
-  <div class="flex flex-col items-center text-primary">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6" />
-    </svg>
-    <span class="text-xs">ホーム</span>
-  </div>
-  <!-- トーク一覧 -->
-  <div class="flex flex-col items-center text-primary">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V10a2 2 0 012-2h2m10 0V6a4 4 0 00-8 0v2m8 0H7" />
-    </svg>
-    <span class="text-xs">トーク一覧</span>
-  </div>
-  <!-- 体調管理 -->
-  <div class="flex flex-col items-center text-primary">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 0V4m0 7v7m-7-7h14" />
-    </svg>
-    <span class="text-xs">体調管理</span>
-  </div>
-</footer>
 
 <!-- 使用シーンセクション -->
 <div class="py-16 bg-card">
@@ -137,7 +93,7 @@
       <div class="card">
         <div class="flex items-start space-x-4">
           <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-            <span class="text-2xl">😔</span>
+            <span class="material-symbols-outlined text-primary">sentiment_dissatisfied</span>
           </div>
           <div>
             <h3 class="font-semibold text-text mb-2">仕事でモヤッとした時</h3>
@@ -149,7 +105,7 @@
       <div class="card">
         <div class="flex items-start space-x-4">
           <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-            <span class="text-2xl">😤</span>
+            <span class="material-symbols-outlined text-primary">mood_bad</span>
           </div>
           <div>
             <h3 class="font-semibold text-text mb-2">イライラが収まらない時</h3>
@@ -161,7 +117,7 @@
       <div class="card">
         <div class="flex items-start space-x-4">
           <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-            <span class="text-2xl">🤔</span>
+            <span class="material-symbols-outlined text-primary">psychology</span>
           </div>
           <div>
             <h3 class="font-semibold text-text mb-2">解決策が欲しい時</h3>
@@ -173,7 +129,7 @@
       <div class="card">
         <div class="flex items-start space-x-4">
           <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-            <span class="text-2xl">📊</span>
+            <span class="material-symbols-outlined text-primary">bar_chart</span>
           </div>
           <div>
             <h3 class="font-semibold text-text mb-2">自分の気持ちを整理したい時</h3>
@@ -185,7 +141,7 @@
       <div class="card">
         <div class="flex items-start space-x-4">
           <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-            <span class="text-2xl">🎯</span>
+            <span class="material-symbols-outlined text-primary">target</span>
           </div>
           <div>
             <h3 class="font-semibold text-text mb-2">メンタル管理を習慣化したい時</h3>
@@ -197,7 +153,7 @@
       <div class="card">
         <div class="flex items-start space-x-4">
           <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-            <span class="text-2xl">💝</span>
+            <span class="material-symbols-outlined text-primary">favorite</span>
           </div>
           <div>
             <h3 class="font-semibold text-text mb-2">孤独を感じる時</h3>

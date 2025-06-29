@@ -1,0 +1,12 @@
+<%= turbo_stream.update "#{dom_id(@chat)}_messages" do %>
+  <div class="text-center text-gray-500 py-8">
+    <p class="text-sm">メッセージが削除されました</p>
+    <p class="text-xs mt-1">新しいメッセージを送信してください</p>
+  </div>
+<% end %>
+
+<%= turbo_stream.update "flash" do %>
+  <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50">
+    メッセージを削除しました
+  </div>
+<% end %> 
