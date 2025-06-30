@@ -3,3 +3,22 @@ ja:
   time:
     formats:
       short: "%Y/%m/%d %H:%M"
+  activerecord:
+    models:
+      ai_character: "AIキャラクター"
+    attributes:
+      ai_character:
+        name: "名前"
+        personality: "性格"
+        avatar: "アバター画像"
+    errors:
+      models:
+        ai_character:
+          attributes:
+            name:
+              blank: "を入力してください"
+            personality:
+              blank: "を入力してください"
+            avatar:
+              content_type: "有効な画像ファイル（PNG、JPG、JPEG）を選択してください"
+              size: "は5MB以下にしてください"
