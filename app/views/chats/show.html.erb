@@ -12,7 +12,13 @@
       <% end %>
       <!-- AIキャラ名とアイコン -->
       <div class="flex items-center">
-        <div class="w-10 h-10 rounded-full bg-gray-200 mr-3"></div>
+        <% if @chat.ai_character.avatar.attached? %>
+          <%= image_tag @chat.ai_character.avatar, class: "w-10 h-10 rounded-full object-cover mr-3" %>
+        <% else %>
+          <div class="w-10 h-10 rounded-full bg-gray-200 mr-3 flex items-center justify-center">
+            <span class="material-symbols-outlined text-gray-400 text-sm">person</span>
+          </div>
+        <% end %>
         <span class="font-bold text-lg text-teal-800"><%= @chat.ai_character.name %></span>
       </div>
       <!-- 歯車ドロップダウン -->
@@ -21,6 +27,12 @@
           <span class="material-symbols-outlined">settings</span>
         </button>
         <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+          <li>
+            <%= link_to edit_ai_character_path(@chat.ai_character), class: "flex items-center" do %>
+              <span class="material-symbols-outlined text-sm mr-2">edit</span>
+              AIキャラクター設定
+            <% end %>
+          </li>
           <li>
             <button onclick="delete_modal.showModal()" class="text-red-600 flex items-center">
               <span class="material-symbols-outlined text-sm mr-2">delete_sweep</span>

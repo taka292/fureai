@@ -30,4 +30,7 @@ Rails.application.routes.draw do
       post :clear_messages
     end
   end
+
+  # AIキャラクター設定
+  resources :ai_characters, only: %i[edit update]
 end

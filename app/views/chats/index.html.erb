@@ -10,8 +10,14 @@
     <% @chats.each do |chat| %>
       <%= link_to chat_path(chat), class: "block" do %>
         <div class="flex items-start px-4 py-3 hover:bg-teal-50 transition">
-          <!-- 画像は将来ここに <img ...> で -->
-          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gray-200 mr-4"></div>
+          <!-- アバター画像 -->
+          <% if chat.ai_character.avatar.attached? %>
+            <%= image_tag chat.ai_character.avatar, class: "flex-shrink-0 w-12 h-12 rounded-full object-cover mr-4" %>
+          <% else %>
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gray-200 mr-4 flex items-center justify-center">
+              <span class="material-symbols-outlined text-gray-400">person</span>
+            </div>
+          <% end %>
           <div class="flex-1 min-w-0">
             <div class="flex justify-between items-center">
               <span class="font-bold text-gray-900 text-base"><%= chat.ai_character.name %></span>

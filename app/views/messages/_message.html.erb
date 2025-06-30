@@ -3,9 +3,13 @@
   <div class="flex <%= message.user? ? 'justify-end' : 'justify-start' %> items-end w-full">
     <% unless message.user? %>
       <!-- アイコン（相手） -->
-      <div class="w-8 h-8 rounded-full bg-gray-200 mr-2 flex-shrink-0 flex items-center justify-center">
-        🐶
-      </div>
+      <% if message.chat.ai_character.avatar.attached? %>
+        <%= image_tag message.chat.ai_character.avatar, class: "w-12 h-12 rounded-full object-cover mr-2 flex-shrink-0" %>
+      <% else %>
+        <div class="w-8 h-8 rounded-full bg-gray-200 mr-2 flex-shrink-0 flex items-center justify-center">
+          <span class="material-symbols-outlined text-gray-400 text-sm">person</span>
+        </div>
+      <% end %>
     <% end %>
     <div class="<%= message.user? ? 'bg-teal-100 text-gray-800' : 'bg-gray-200 text-gray-800' %> rounded-2xl px-4 py-2 max-w-xs md:max-w-lg break-words shadow relative">
       <%= message.content %>
@@ -13,11 +17,5 @@
         <%= message.created_at.strftime('%H:%M') %>
       </div>
     </div>
-    <% if message.user? %>
-      <!-- アイコン（自分） -->
-      <div class="w-8 h-8 rounded-full bg-teal-100 ml-2 flex-shrink-0 flex items-center justify-center">
-        🙂
-      </div>
-    <% end %>
   </div>
 </div>
