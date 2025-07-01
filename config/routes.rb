@@ -37,4 +37,6 @@ Rails.application.routes.draw do
 
   # AIキャラクター設定
   resources :ai_characters, only: %i[edit update]
+
+  resource :profile, only: [:edit, :update], controller: 'profiles'
 end
