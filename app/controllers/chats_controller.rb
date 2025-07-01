@@ -14,20 +14,20 @@ class ChatsController < ApplicationController
   end
 
   def new
-    @chat = current_user.chats.build
+    @ai_character = current_user.ai_characters.build
   end
 
   def create
-    # デフォルトのAIキャラクターを使用
-    default_ai = current_user.ai_characters.first || create_default_ai
-    existing_chat = current_user.chats.find_by(ai_character_id: default_ai.id)
-
-    if existing_chat
-      redirect_to existing_chat, notice: '既存のチャットに戻りました。'
+    @ai_character = current_user.ai_characters.build(ai_character_params)
+    if @ai_character.save
+      @chat = current_user.chats.build(ai_character: @ai_character)
+      if @chat.save
+        redirect_to @chat, notice: '新しいチャットが作成されました。'
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
-      @chat = current_user.chats.build(ai_character: default_ai)
-      @chat.save
-      redirect_to @chat, notice: '新しいチャットが作成されました。'
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -95,10 +95,7 @@ class ChatsController < ApplicationController
     @chat = current_user.chats.find(params[:id])
   end
 
-  def create_default_ai
-    current_user.ai_characters.create!(
-      name: "デフォルトAI",
-      personality: "あなたは親切で丁寧なアシスタントです。ユーザーの質問に分かりやすく答えてください。"
-    )
+  def ai_character_params
+    params.require(:ai_character).permit(:name, :personality, :avatar)
   end
 end

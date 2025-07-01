@@ -6,7 +6,7 @@ class AiCharacter < ApplicationRecord
   has_one_attached :avatar
   
   # バリデーション
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 50 }, uniqueness: { scope: :user_id, message: "は既に登録されています" }
   validates :personality, presence: true, length: { maximum: 1000 }
   
   # ActiveStorageのバリデーション
