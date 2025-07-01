@@ -1,0 +1,79 @@
+<div class="min-h-screen bg-gray-50 py-8">
+  <div class="max-w-2xl mx-auto px-4">
+    <!-- ヘッダー -->
+    <div class="mb-8">
+      <div class="flex items-center mb-4">
+        <%= link_to chat_path(@ai_character.chats.first), class: "flex items-center text-teal-700 hover:text-teal-900 mr-4" do %>
+          <span class="material-symbols-outlined mr-1">arrow_back</span>
+          <span>チャットに戻る</span>
+        <% end %>
+      </div>
+      <h1 class="text-2xl font-bold text-gray-900">AIキャラクター設定</h1>
+      <p class="text-gray-600 mt-2">AIの名前、性格、アバター画像をカスタマイズできます</p>
+    </div>
+
+    <!-- 設定フォーム -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <%= form_with(model: @ai_character, local: true, class: "space-y-6") do |form| %>
+        <% if @ai_character.errors.any? %>
+          <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+            <h3 class="text-red-800 font-medium mb-2">以下のエラーを修正してください：</h3>
+            <ul class="text-red-700 text-sm space-y-1">
+              <% @ai_character.errors.full_messages.each do |message| %>
+                <li>• <%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <!-- アバター画像 -->
+        <div class="space-y-4">
+          <label class="block text-sm font-medium text-gray-700">アバター画像</label>
+          <div class="flex items-center space-x-6">
+            <div class="flex-shrink-0">
+              <% if @ai_character.avatar.attached? %>
+                <%= image_tag @ai_character.avatar, class: "w-20 h-20 rounded-full object-cover border-2 border-gray-200" %>
+              <% else %>
+                <div class="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-gray-400 text-2xl">person</span>
+                </div>
+              <% end %>
+            </div>
+            <div class="flex-1">
+              <%= form.file_field :avatar, 
+                  accept: "image/png,image/jpg,image/jpeg",
+                  class: "block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100" %>
+              <p class="text-xs text-gray-500 mt-1">PNG、JPG、JPEG形式、5MB以下</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 名前 -->
+        <div>
+          <%= form.label :name, "名前", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <%= form.text_field :name, 
+              class: "w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500",
+              placeholder: "名前を入力してください" %>
+        </div>
+
+        <!-- 性格設定 -->
+        <div>
+          <%= form.label :personality, "性格・設定", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <p class="text-xs text-gray-500 mt-1">AIの性格や行動パターンを設定します（1000文字以内）</p>
+          <%= form.text_area :personality, 
+              rows: 6,
+              class: "w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500",
+              placeholder: "例：あなたは親切で明るい性格のアシスタントです。ユーザーの話をよく聞き、共感的な返答を心がけてください。専門的な知識も持ち合わせており、質問には丁寧に答えます。" %>
+        </div>
+
+        <!-- ボタン -->
+        <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+          <%= link_to "キャンセル", chat_path(@ai_character.chats.first), 
+              class: "px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors" %>
+          <%= form.submit "設定を保存", 
+              class: "px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div> 

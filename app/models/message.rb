@@ -9,11 +9,20 @@ class Message < ApplicationRecord
 
   # メッセージをOpenAIのAPI用のフォーマットに変換するメソッド(パフォーマンスを考慮し、プロンプト等のsystemメッセージは先頭に、それ以外は最新の50件を取得)
   def self.for_openai(messages)
+    # 最初のメッセージからチャットとAIキャラクターを取得
+    chat = messages.first.chat
+    ai_character = chat.ai_character
+
+    # ベースプロンプト（環境変数 or デフォルト）
+    base_prompt = ENV["OPENAI_SYSTEM_PROMPT"] || "あなたは親切で丁寧なアシスタントです。"
+    # キャラクターごとのpersonalityを追記
+    personality_prompt = ai_character.personality.present? ? "\n\n#{ai_character.personality}" : ""
+
     system_prompt = {
       role: "system",
-      # contentはenvファイルから取得
-      content: ENV["OPENAI_SYSTEM_PROMPT"]
+      content: base_prompt + personality_prompt
     }
+
     [system_prompt] + messages.map { |message| { role: message.role, content: message.content } }
   end
 
