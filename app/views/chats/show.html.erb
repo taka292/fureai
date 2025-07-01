@@ -1,8 +1,15 @@
 <!-- app/views/chats/show.html.erb -->
 <%= turbo_stream_from "#{dom_id(@chat)}_messages" %>
-<div class="min-h-screen bg-gray-50 flex flex-col items-stretch">
+<% if @chat.current_background_image_id == 'black' %>
+  <% bg_style = "background-color: #000;" %>
+<% elsif @chat.current_background_image.present? %>
+  <% bg_style = "background-image: url('#{url_for(@chat.current_background_image)}'); background-size: cover; background-position: center;" %>
+<% else %>
+  <% bg_style = "background-color: #fff;" %>
+<% end %>
+<div class="min-h-screen flex flex-col items-stretch" style="<%= bg_style %>">
   <!-- チャット全体のラッパー -->
-  <div class="w-full flex flex-col flex-1 pb-24 bg-transparent">
+  <div class="w-full flex flex-col flex-1 bg-transparent">
     <!-- ヘッダー -->
     <div class="flex items-center justify-between bg-teal-100 rounded-t-lg px-4 py-3 mb-2">
       <!-- 戻るボタン -->
@@ -13,10 +20,10 @@
       <!-- AIキャラ名とアイコン -->
       <div class="flex items-center">
         <% if @chat.ai_character.avatar.attached? %>
-          <%= image_tag @chat.ai_character.avatar, class: "w-10 h-10 rounded-full object-cover mr-3" %>
+          <%= image_tag @chat.ai_character.avatar, class: "w-16 h-16 rounded-full object-cover mr-3" %>
         <% else %>
-          <div class="w-10 h-10 rounded-full bg-gray-200 mr-3 flex items-center justify-center">
-            <span class="material-symbols-outlined text-gray-400 text-sm">person</span>
+          <div class="w-16 h-16 rounded-full bg-gray-200 mr-3 flex items-center justify-center">
+            <span class="material-symbols-outlined text-gray-400 text-xl">person</span>
           </div>
         <% end %>
         <span class="font-bold text-lg text-teal-800"><%= @chat.ai_character.name %></span>
@@ -31,6 +38,12 @@
             <%= link_to edit_ai_character_path(@chat.ai_character), class: "flex items-center" do %>
               <span class="material-symbols-outlined text-sm mr-2">edit</span>
               AIキャラクター設定
+            <% end %>
+          </li>
+          <li>
+            <%= link_to edit_background_chat_path(@chat), class: "flex items-center" do %>
+              <span class="material-symbols-outlined text-sm mr-2">image</span>
+              背景画像設定
             <% end %>
           </li>
           <li>

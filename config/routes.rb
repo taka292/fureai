@@ -28,6 +28,10 @@ Rails.application.routes.draw do
     resources :messages, only: %i[new create]
     member do
       post :clear_messages
+      get :edit_background
+      patch :update_background
+      get :delete_background_images
+      delete :destroy_selected_background_images
     end
   end
 

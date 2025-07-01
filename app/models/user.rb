@@ -6,4 +6,5 @@ class User < ApplicationRecord
          
   has_many :chats, dependent: :destroy
   has_many :ai_characters, dependent: :destroy
+  has_many_attached :background_images
 end
