@@ -24,6 +24,10 @@ class ChatsController < ApplicationController
       if @chat.save
         redirect_to @chat, notice: '新しいチャットが作成されました。'
       else
+        # チャットのエラーをAIキャラクター側にコピー
+        @chat.errors.full_messages.each do |msg|
+          @ai_character.errors.add(:base, msg)
+        end
         render :new, status: :unprocessable_entity
       end
     else
@@ -87,6 +91,14 @@ class ChatsController < ApplicationController
     else
       redirect_to delete_background_images_chat_path(@chat), alert: '削除する画像を選択してください'
     end
+  end
+
+  def destroy
+    @chat = current_user.chats.find(params[:id])
+    ai_character = @chat.ai_character
+    @chat.destroy
+    ai_character.destroy
+    redirect_to chats_path, notice: 'チャットとAIキャラクターを削除しました。'
   end
 
   private

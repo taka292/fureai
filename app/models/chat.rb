@@ -21,7 +21,7 @@ class Chat < ApplicationRecord
 
   def user_chat_limit
     if user && user.chats.count >= 5
-      errors.add(:base, "チャットは最大5件まで作成できます")
+      errors.add(:base, "チャット作成は最大5件までです")
     end
   end
 end 
