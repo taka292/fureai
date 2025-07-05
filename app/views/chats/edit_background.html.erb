@@ -4,11 +4,11 @@
     <!-- 白・黒背景選択 -->
     <div class="flex flex-col sm:flex-row gap-4 mb-4">
       <label class="flex items-center cursor-pointer">
-        <%= radio_button_tag :background_image_blob_id, '', @chat.current_background_image_id.blank?, class: "accent-teal-600" %>
+        <%= radio_button_tag :background_image_blob_id, "", @chat.current_background_image_id.blank?, class: "accent-teal-600" %>
         <span class="ml-2">白背景（デフォルト）</span>
       </label>
       <label class="flex items-center cursor-pointer">
-        <%= radio_button_tag :background_image_blob_id, 'black', @chat.current_background_image_id == 'black', class: "accent-teal-600" %>
+        <%= radio_button_tag :background_image_blob_id, "black", @chat.current_background_image_id == "black", class: "accent-teal-600" %>
         <span class="ml-2">黒背景</span>
       </label>
     </div>
@@ -19,9 +19,9 @@
         <div class="relative">
           <label class="block cursor-pointer group">
             <%= radio_button_tag :background_image_blob_id, image.blob.id, @chat.current_background_image_id == image.blob.id.to_s, class: "hidden peer" %>
-            <%= image_tag image.variant(resize_to_limit: [240, 160]), 
-                  class: "rounded border-2 border-gray-200 peer-checked:border-teal-500 peer-checked:ring-4 peer-checked:ring-teal-200 peer-checked:shadow-lg transition cursor-pointer", 
-                  alt: '背景画像' %>
+            <%= image_tag image.variant(resize_to_limit: [ 240, 160 ]),
+                  class: "rounded border-2 border-gray-200 peer-checked:border-teal-500 peer-checked:ring-4 peer-checked:ring-teal-200 peer-checked:shadow-lg transition cursor-pointer",
+                  alt: "背景画像" %>
             <div class="absolute top-2 right-2 bg-white/80 rounded-full p-1 pointer-events-none opacity-0 peer-checked:opacity-100 transition">
               <span class="material-symbols-outlined text-teal-600 text-lg">check_circle</span>
             </div>
@@ -33,7 +33,7 @@
     <!-- 新しい画像アップロード -->
     <div class="mb-4">
       <%= form.label :background_image, "新しい背景画像をアップロード", class: "block text-sm font-medium text-gray-700 mb-2" %>
-      <%= file_field_tag 'user[background_image]', accept: "image/*", class: "block w-full text-sm text-gray-500" %>
+      <%= file_field_tag "user[background_image]", accept: "image/*", class: "block w-full text-sm text-gray-500" %>
     </div>
 
     <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
@@ -42,5 +42,5 @@
     </div>
   <% end %>
 
-  <%= link_to '画像削除はこちら', delete_background_images_chat_path(@chat), class: "text-red-600 underline ml-2" %>
-</div> 
+  <%= link_to "画像削除はこちら", delete_background_images_chat_path(@chat), class: "text-red-600 underline ml-2" %>
+</div>

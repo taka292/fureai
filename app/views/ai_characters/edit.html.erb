@@ -14,7 +14,7 @@
 
     <!-- 設定フォーム -->
     <div class="bg-white rounded-lg shadow-md p-6">
-      <%= render 'ai_characters/form', ai_character: @ai_character, form_url: ai_character_path(@ai_character), cancel_url: chat_path(@ai_character.chats.first), submit_label: '設定を保存' %>
+      <%= render "ai_characters/form", ai_character: @ai_character, form_url: ai_character_path(@ai_character), cancel_url: chat_path(@ai_character.chats.first), submit_label: "設定を保存" %>
     </div>
   </div>
-</div> 
+</div>
