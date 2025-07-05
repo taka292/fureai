@@ -4,14 +4,14 @@
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
       <% @background_images.each do |image| %>
         <label class="relative block cursor-pointer group">
-          <%= check_box_tag 'blob_ids[]', image.blob.id, false, class: "absolute top-2 right-2 z-10 w-5 h-5 accent-teal-600" %>
-          <%= image_tag image.variant(resize_to_limit: [240, 160]), class: "rounded border-2 border-gray-200 group-hover:border-teal-400 transition" %>
+          <%= check_box_tag "blob_ids[]", image.blob.id, false, class: "absolute top-2 right-2 z-10 w-5 h-5 accent-teal-600" %>
+          <%= image_tag image.variant(resize_to_limit: [ 240, 160 ]), class: "rounded border-2 border-gray-200 group-hover:border-teal-400 transition" %>
         </label>
       <% end %>
     </div>
     <div class="flex justify-end gap-4">
-      <%= link_to 'キャンセル', edit_background_chat_path(@chat), class: "px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors" %>
-      <%= submit_tag '選択した画像を削除', class: "px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium", data: { turbo_confirm: "本当に選択した画像を削除しますか？この操作は取り消せません。" } %>
+      <%= link_to "キャンセル", edit_background_chat_path(@chat), class: "px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors" %>
+      <%= submit_tag "選択した画像を削除", class: "px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium", data: { turbo_confirm: "本当に選択した画像を削除しますか？この操作は取り消せません。" } %>
     </div>
   <% end %>
 </div>

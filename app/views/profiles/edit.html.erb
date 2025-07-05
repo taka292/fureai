@@ -23,18 +23,20 @@
           <%= f.label :email, "メールアドレス", class: "label font-semibold text-base-content" %>
           <%= f.email_field :email, class: "input input-bordered w-full text-base-content placeholder:text-gray-400" %>
         </div>
-        <div class="form-control mb-4">
-          <%= f.label :password, "新しいパスワード", class: "label font-semibold text-base-content" %>
-          <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered w-full text-base-content placeholder:text-gray-400" %>
-        </div>
-        <div class="form-control mb-4">
-          <%= f.label :password_confirmation, "新しいパスワード（確認）", class: "label font-semibold text-base-content" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered w-full text-base-content placeholder:text-gray-400" %>
-        </div>
-        <div class="form-control mb-4">
-          <%= f.label :current_password, "現在のパスワード（変更時必須）", class: "label font-semibold text-base-content" %>
-          <%= f.password_field :current_password, autocomplete: "current-password", class: "input input-bordered w-full text-base-content placeholder:text-gray-400" %>
-        </div>
+        <% unless @user.provider.present? %>
+          <div class="form-control mb-4">
+            <%= f.label :password, "新しいパスワード", class: "label font-semibold text-base-content" %>
+            <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered w-full text-base-content placeholder:text-gray-400" %>
+          </div>
+          <div class="form-control mb-4">
+            <%= f.label :password_confirmation, "新しいパスワード（確認）", class: "label font-semibold text-base-content" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered w-full text-base-content placeholder:text-gray-400" %>
+          </div>
+          <div class="form-control mb-4">
+            <%= f.label :current_password, "現在のパスワード（変更時必須）", class: "label font-semibold text-base-content" %>
+            <%= f.password_field :current_password, autocomplete: "current-password", class: "input input-bordered w-full text-base-content placeholder:text-gray-400" %>
+          </div>
+        <% end %>
         <div class="form-control mt-6">
           <%= f.submit "保存", class: "btn btn-primary w-full text-white font-bold shadow-md hover:brightness-110 transition" %>
         </div>
@@ -45,4 +47,4 @@
       </div>
     </div>
   </div>
-</div> 
+</div>
