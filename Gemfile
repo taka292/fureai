@@ -42,7 +42,7 @@ gem "rubocop-rspec", require: false
 
 gem 'erb_lint'
 
-gem "omniauth", "1.9.1"
+gem "omniauth", "2.1.3"
 gem "omniauth-google-oauth2"
 
 # Use Redis adapter to run Action Cable in production
