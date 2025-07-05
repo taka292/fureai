@@ -96,6 +96,13 @@ GEM
     base64 (0.3.0)
     bcrypt (3.1.20)
     benchmark (0.4.1)
+    better_html (2.1.1)
+      actionview (>= 6.0)
+      activesupport (>= 6.0)
+      ast (~> 2.0)
+      erubi (~> 1.4)
+      parser (>= 2.4)
+      smart_properties
     bigdecimal (3.2.2)
     bindex (0.8.1)
     bootsnap (1.18.6)
@@ -131,6 +138,13 @@ GEM
       railties (>= 6.1)
     drb (2.2.3)
     erb (5.0.1)
+    erb_lint (0.9.0)
+      activesupport
+      better_html (>= 2.0.1)
+      parser (>= 2.7.1.4)
+      rainbow
+      rubocop (>= 1)
+      smart_properties
     erubi (1.13.1)
     event_stream_parser (1.0.0)
     faraday (2.13.1)
@@ -352,6 +366,7 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (>= 3.0, < 6.0, != 5.0.0)
+    smart_properties (1.17.0)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -420,6 +435,7 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
+  erb_lint
   html2slim
   image_processing (~> 1.2)
   jbuilder
