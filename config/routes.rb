@@ -1,7 +1,7 @@
-require 'sidekiq/web'
+require "sidekiq/web"
 
 Rails.application.routes.draw do
-  mount Sidekiq::Web, at: '/sidekiq'
+  mount Sidekiq::Web, at: "/sidekiq"
   get "messages/new"
   get "messages/create"
 
@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   root "home#index"
 
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    registrations: "users/registrations",
+    sessions: "users/sessions"
   }
 
   # チャット機能
@@ -38,5 +38,5 @@ Rails.application.routes.draw do
   # AIキャラクター設定
   resources :ai_characters, only: %i[edit update]
 
-  resource :profile, only: [:edit, :update], controller: 'profiles'
+  resource :profile, only: [ :edit, :update ], controller: "profiles"
 end

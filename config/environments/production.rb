@@ -104,6 +104,6 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   config.hosts << "fureai.onrender.com"
-  config.hosts << 'fureai.site'
+  config.hosts << "fureai.site"
   config.hosts << "www.fureai.site"
 end
