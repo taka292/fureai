@@ -1,0 +1,47 @@
+<%= form_with(model: @mental_condition) do |f| %>
+  <div class="max-w-md mx-auto w-full">
+    <div class="bg-base-100 rounded-xl shadow p-6 mb-6 flex flex-col items-center">
+      <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-2">
+        <span class="material-symbols-outlined text-red-500 text-4xl">favorite</span>
+      </div>
+      <%= f.label :mental_state, "こころ", class: "block text-lg font-bold text-text mb-1 text-center" %>
+      <p class="text-xs text-textSub mb-2 text-center">今日の気分をハートで選んでください</p>
+      <div class="flex space-x-1 my-2 justify-center">
+        <%= f.hidden_field :mental_state, id: "mental_state_input" %>
+        <div class="flex" id="mental_state_icons">
+          <% 5.times do |i| %>
+            <span class="material-symbols-outlined text-3xl cursor-pointer transition-colors
+              <%= i < mental_state_to_number(f.object.mental_state) ? 'text-red-500' : 'text-gray-300' %> hover:text-red-600"
+              data-index="<%= i %>" data-type="mental">
+              favorite
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-base-100 rounded-xl shadow p-6 mb-6 flex flex-col items-center">
+      <div class="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mb-2">
+        <span class="material-symbols-outlined text-orange-400 text-4xl">sentiment_satisfied</span>
+      </div>
+      <%= f.label :physical_state, "からだ", class: "block text-lg font-bold text-text mb-1 text-center" %>
+      <p class="text-xs text-textSub mb-2 text-center">今日の体の調子を選んでください</p>
+      <div class="flex space-x-1 my-2 justify-center">
+        <%= f.hidden_field :physical_state, id: "physical_state_input" %>
+        <div class="flex" id="physical_state_icons">
+          <% 5.times do |i| %>
+            <span class="material-symbols-outlined text-3xl cursor-pointer transition-colors
+              <%= i < physical_state_to_number(f.object.physical_state) ? 'text-orange-400' : 'text-gray-300' %> hover:text-orange-600"
+              data-index="<%= i %>" data-type="physical">
+              sentiment_satisfied
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-end">
+      <%= f.submit "保存", class: "btn btn-primary px-8 py-2 font-bold shadow w-full sm:w-auto" %>
+    </div>
+  </div>
+<% end %>

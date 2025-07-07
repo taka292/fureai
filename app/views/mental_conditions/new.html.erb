@@ -1,0 +1,10 @@
+<div class="h-full w-full flex-1 flex flex-col justify-start items-center bg-base-100 overflow-auto py-4 pb-20" data-controller="rating">
+  <div class="flex flex-col items-center mb-8 w-full">
+    <h2 class="text-3xl font-bold text-text mb-2 text-center">こころとからだを記録する</h2>
+    <p class="text-base text-textSub text-center mb-1">今日の自分の気分と体調を、直感的に記録しましょう。</p>
+    <p class="text-xs text-gray-400 text-center">毎日1回だけ記録できます。自分の変化を見返すきっかけに。</p>
+  </div>
+  <div class="w-full max-w-md">
+    <%= render 'form', mental_condition: @mental_condition %>
+  </div>
+</div> 

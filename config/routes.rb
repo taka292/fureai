@@ -40,4 +40,6 @@ Rails.application.routes.draw do
   resources :ai_characters, only: %i[edit update]
 
   resource :profile, only: [ :edit, :update ], controller: "profiles"
+
+  resources :mental_conditions
 end

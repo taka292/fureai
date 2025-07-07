@@ -22,3 +22,16 @@ ja:
             avatar:
               content_type: "有効な画像ファイル（PNG、JPG、JPEG）を選択してください"
               size: "は5MB以下にしてください"
+  mental_condition:
+    mental_state:
+      very_bad: "とても悪い"
+      bad: "悪い"
+      normal: "普通"
+      good: "良い"
+      very_good: "とても良い"
+    physical_state:
+      very_bad: "体調最悪"
+      bad: "だるい"
+      normal: "普通"
+      good: "元気"
+      very_good: "絶好調"
