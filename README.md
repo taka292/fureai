@@ -1,4 +1,6 @@
+
 # FureAi - その時のあなたに寄り添う、ふれあい AI
+![fureaiアイコン](https://github.com/user-attachments/assets/edfe3daa-fb8f-4346-b253-86944b3f46a6)
 
 メンタル管理 × カスタマイズ可能な AI チャット。その日の調子を記録しつつ、その時のあなたに寄り添う、AI チャットにより、いつでも気軽に相談できる場所を提供します。
 
@@ -43,6 +45,46 @@ FureAi は、24 時間いつでも気軽に相談できる AI チャット機能
 - **プロフィール設定**: 自分の推しやリラックス方法を設定
 - **画像管理**: アバター画像と背景画像のアップロード機能
 
+## 🎯 サービスの特徴
+
+### その時のあなたに寄り添う AI
+
+- **気分に応じた相談相手**: ただ聞いてほしい時は受容的な AI、アドバイスが欲しい時は解決思考の AI
+- **温かみのある対話**: 無機質な返答ではなく、人間のような温かみのある応答
+- **24時間いつでも利用**: 夜中でも気軽に相談できる環境
+
+### シンプルで使いやすい設計
+
+- **直感的な操作**: 複雑な機能を排除し、メインは AI への相談に集中
+- **カスタマイズ可能**: 自分の好みに合わせて AI キャラクターや画面を設定
+- **継続しやすい仕組み**: 経験値システムで継続のモチベーションを維持
+
+## 💡 使用シーン
+
+### 仕事でモヤッとした時
+
+帰宅後、AI に吐き出して気持ちを落ち着かせる
+
+### イライラが収まらない時
+
+ただ聞いてほしい時は受容タイプの AI に
+
+### 解決策が欲しい時
+
+アドバイスを求める時は解決思考タイプの AI に
+
+### 自分の気持ちを整理したい時
+
+3行日記で感情を整理し、メタ認知を促す
+
+### メンタル管理を習慣化したい時
+
+継続で経験値を得て、達成感を味わう
+
+### 孤独を感じる時
+
+24時間いつでも話せる、あなただけの AI パートナー
+
 ## 🛠 技術スタック
 
 ### フロントエンド
@@ -74,71 +116,6 @@ FureAi は、24 時間いつでも気軽に相談できる AI チャット機能
 - **Sidekiq** + **Active Job** (非同期処理)
 - **ActiveStorage** (画像管理)
 - **Chartkick** (グラフ表示)
-
-## 🚀 セットアップ
-
-### 前提条件
-
-- Docker
-- Docker Compose
-
-### 開発環境の起動
-
-```bash
-# リポジトリをクローン
-git clone <repository-url>
-cd fureai
-
-# Docker環境で起動
-docker-compose up -d
-
-# データベースのセットアップ
-docker-compose exec web rails db:create
-docker-compose exec web rails db:migrate
-docker-compose exec web rails db:seed
-
-# アプリケーションにアクセス
-open http://localhost:3000
-```
-
-### 環境変数の設定
-
-`.env`ファイルを作成し、以下の環境変数を設定してください：
-
-```env
-# OpenAI API
-OPENAI_API_KEY=your_openai_api_key
-OPENAI_SYSTEM_PROMPT=あなたは親切で丁寧なアシスタントです。
-
-# Google OAuth
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-
-# AWS S3 (本番環境)
-AWS_ACCESS_KEY_ID=your_aws_access_key
-AWS_SECRET_ACCESS_KEY=your_aws_secret_key
-AWS_REGION=ap-northeast-1
-AWS_BUCKET=your_s3_bucket_name
-
-# Redis
-REDIS_URL=redis://redis:6379/0
-```
-
-## 📁 プロジェクト構造
-
-```
-fureai/
-├── app/
-│   ├── controllers/          # コントローラー
-│   ├── models/              # モデル
-│   ├── views/               # ビュー
-│   ├── jobs/                # 非同期ジョブ
-│   └── javascript/          # JavaScript
-├── config/                  # 設定ファイル
-├── db/                      # データベース関連
-├── compose.yml              # Docker Compose設定
-└── Dockerfile.dev           # 開発用Dockerfile
-```
 
 ## 🔧 主要な技術的工夫
 
@@ -186,17 +163,3 @@ fureai/
 - **3 行日記機能**: より気軽な記録方法
 - **AI キャラクター共有**: ユーザー間でのキャラクター共有
 - **メンタル記録分析**: より詳細な自己理解のサポート
-
-## 📝 ライセンス
-
-© 2024 FureAi. All rights reserved.
-
-## 🤝 フィードバック
-
-実際に使用していただいたユーザーからの感想：
-
-- 「気分に応じて相談相手を変えられるのが良い」
-- 「メンタル記録で自分の変化が分かる」
-- 「もう少し応答の文言を人間っぽくしてほしい」
-
-改善提案やフィードバックは大歓迎です！
