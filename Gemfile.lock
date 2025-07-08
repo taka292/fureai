@@ -119,6 +119,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    chartkick (5.2.0)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.3)
     crass (1.0.6)
@@ -165,6 +166,8 @@ GEM
     ffi (1.17.2-x86_64-linux-musl)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    groupdate (6.7.0)
+      activesupport (>= 7.1)
     hashie (5.0.0)
     hpricot (0.8.6)
     html2slim (0.2.0)
@@ -456,10 +459,12 @@ DEPENDENCIES
   bootsnap
   brakeman
   capybara
+  chartkick
   debug
   devise
   dotenv-rails
   erb_lint
+  groupdate
   html2slim
   image_processing (~> 1.2)
   jbuilder
