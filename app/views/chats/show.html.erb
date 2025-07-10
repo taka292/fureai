@@ -20,7 +20,7 @@
       <!-- AIキャラ名とアイコン -->
       <div class="flex items-center">
         <% if @chat.ai_character.avatar.attached? %>
-          <%= image_tag rails_blob_url(@chat.ai_character.avatar), class: "w-16 h-16 rounded-full object-cover mr-3" %>
+          <%= image_tag @chat.ai_character.avatar, class: "w-16 h-16 rounded-full object-cover mr-3" %>
         <% else %>
           <div class="w-16 h-16 rounded-full bg-gray-200 mr-3 flex items-center justify-center">
             <span class="material-symbols-outlined text-gray-400 text-xl">person</span>
