@@ -2,6 +2,8 @@
 # FureAi - その時のあなたに寄り添う、ふれあい AI
 ![fureaiアイコン](https://github.com/user-attachments/assets/edfe3daa-fb8f-4346-b253-86944b3f46a6)
 
+### サービスURLは[こちら](https://fureai.onrender.com/)
+
 メンタル管理 × カスタマイズ可能な AI チャット。その日の調子を記録しつつ、その時のあなたに寄り添う、AI チャットにより、いつでも気軽に相談できる場所を提供します。
 
 ## 🌟 サービス概要
