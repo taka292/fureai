@@ -10,5 +10,8 @@ application.register("chat-scroll", ChatScrollController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import MessageAvatarController from "./message_avatar_controller"
+application.register("message-avatar", MessageAvatarController)
+
 import RatingController from "./rating_controller"
-application.register("rating", RatingController)
+application.register("rating", RatingController)x
