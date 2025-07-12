@@ -1,5 +1,5 @@
 <%# メッセージのDOM IDを取得し、そのメッセージを表示する %>
-<div id="<%= dom_id(message) %>_messages" class="min-h-[60px]" <%= 'data-scroll-to="true"'.html_safe if local_assigns[:scroll_to] %> data-controller="message-avatar">
+<div id="<%= dom_id(message) %>_messages" class="flex-shrink-0 w-full" <%= 'data-scroll-to="true"'.html_safe if local_assigns[:scroll_to] %> data-controller="message-avatar">
   <div class="flex <%= message.user? ? "justify-end" : "justify-start" %> items-end w-full">
     <% unless message.user? %>
       <!-- アイコン（相手） -->
