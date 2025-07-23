@@ -11,7 +11,7 @@
   <% @mental_conditions.each do |condition| %>
     <div class="p-4 rounded-xl shadow bg-base-100 flex flex-col md:flex-row md:items-center justify-between">
       <div>
-        <div class="font-semibold text-text"><%= l condition.recorded_at, format: :long %></div>
+        <div class="font-semibold text-text"><%= l condition.recorded_at, format: :default %></div>
         <div class="mt-1">
           <span class="text-red-500 font-semibold">こころ：</span>
           <span class="flex items-center">
@@ -31,3 +31,4 @@
       </div>
     </div>
   <% end %> 
+</div> 

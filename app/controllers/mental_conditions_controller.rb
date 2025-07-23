@@ -6,8 +6,17 @@ class MentalConditionsController < ApplicationController
     @mental_conditions = current_user.mental_conditions.order(recorded_at: :desc)
     end_date = Time.current.in_time_zone('Asia/Tokyo').to_date
     start_date = end_date - 6.days
-    @mental_chart = current_user.mental_conditions.where(recorded_at: start_date.beginning_of_day..end_date.end_of_day).group_by_day(:recorded_at, range: start_date..end_date).average(:mental_state)
-    @physical_chart = current_user.mental_conditions.where(recorded_at: start_date.beginning_of_day..end_date.end_of_day).group_by_day(:recorded_at, range: start_date..end_date).average(:physical_state)
+
+    # group_by_dayのformatオプションを使用して日付フォーマットを指定（日本時間）
+    @mental_chart = current_user.mental_conditions
+      .where(recorded_at: start_date.beginning_of_day..end_date.end_of_day)
+      .group_by_day(:recorded_at, range: start_date..end_date, format: "%m/%d", time_zone: "Asia/Tokyo")
+      .average(:mental_state)
+    
+    @physical_chart = current_user.mental_conditions
+      .where(recorded_at: start_date.beginning_of_day..end_date.end_of_day)
+      .group_by_day(:recorded_at, range: start_date..end_date, format: "%m/%d", time_zone: "Asia/Tokyo")
+      .average(:physical_state)
   end
 
   def show
