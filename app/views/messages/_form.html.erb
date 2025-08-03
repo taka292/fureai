@@ -1,7 +1,7 @@
 <%# メッセージを送信するフォーム %>
 <%# コマンド（Cmd）キーとEnterキーが同時に押されたときに、$eventオブジェクトのtargetプロパティ（イベントを発生させた要素）の親要素のフォームに対してrequestSubmit()メソッドを呼び出し、フォームを送信さる %>
 <%= turbo_frame_tag "#{dom_id(chat)}_message_form" do %>
-  <%= form_with(model: Message.new, url: chat_messages_path(chat), html: { class: "fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 z-10" }) do |form| %>
+  <%= form_with(model: Message.new, url: chat_messages_path(chat), html: { class: "fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 z-10 pb-5 md:pb-2" }) do |form| %>
     <div class="flex items-center w-full">
       <%= form.text_field :content, placeholder: "メッセージを入力", rows: 4, "x-on:keydown.cmd.enter" => "$event.target.form.requestSubmit();", class: "flex-1 rounded-full border px-4 py-2 mr-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" %>
       <%= form.button type: :submit, class: "bg-sky-400 text-white rounded-full px-4 py-2 hover:bg-sky-500 flex items-center flex-shrink-0" do %>
