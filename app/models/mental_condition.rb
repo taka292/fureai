@@ -11,15 +11,15 @@ class MentalCondition < ApplicationRecord
   def one_record_per_day_per_user_japan_time
     return unless user && recorded_at
     # 日本時間で日付を判定
-    jst_date = recorded_at.in_time_zone('Asia/Tokyo').to_date
+    jst_date = recorded_at.in_time_zone("Asia/Tokyo").to_date
     exists = MentalCondition.where(user_id: user_id)
       .where.not(id: id)
-      .where('recorded_at >= ? AND recorded_at < ?',
-        jst_date.beginning_of_day.in_time_zone('Asia/Tokyo'),
-        (jst_date + 1).beginning_of_day.in_time_zone('Asia/Tokyo')
+      .where("recorded_at >= ? AND recorded_at < ?",
+        jst_date.beginning_of_day.in_time_zone("Asia/Tokyo"),
+        (jst_date + 1).beginning_of_day.in_time_zone("Asia/Tokyo")
       ).exists?
     if exists
-      errors.add(:base, '本日分の記録はすでに登録されています')
+      errors.add(:base, "本日分の記録はすでに登録されています")
     end
   end
 end

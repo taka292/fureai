@@ -24,4 +24,4 @@ class Chat < ApplicationRecord
       errors.add(:base, "チャット作成は最大5件までです")
     end
   end
-end 
+end
