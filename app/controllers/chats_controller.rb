@@ -10,7 +10,7 @@ class ChatsController < ApplicationController
   end
 
   def show
-    @messages = @chat.messages.order(created_at: :asc)
+    @messages = @chat.messages.order(:id)
   end
 
   def new
@@ -22,7 +22,7 @@ class ChatsController < ApplicationController
     if @ai_character.save
       @chat = current_user.chats.build(ai_character: @ai_character)
       if @chat.save
-        redirect_to @chat, notice: '新しいチャットが作成されました。'
+        redirect_to @chat, notice: "新しいチャットが作成されました。"
       else
         # チャットのエラーをAIキャラクター側にコピー
         @chat.errors.full_messages.each do |msg|
@@ -40,7 +40,7 @@ class ChatsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to @chat, notice: 'メッセージを削除しました。' }
+      format.html { redirect_to @chat, notice: "メッセージを削除しました。" }
     end
   end
 
@@ -59,8 +59,8 @@ class ChatsController < ApplicationController
 
     # 2. 既存画像もしくは黒背景の選択
     elsif params[:background_image_blob_id].present?
-      if params[:background_image_blob_id] == 'black'
-        @chat.update(current_background_image_id: 'black')
+      if params[:background_image_blob_id] == "black"
+        @chat.update(current_background_image_id: "black")
       else
         @chat.update(current_background_image_id: params[:background_image_blob_id])
       end
@@ -70,7 +70,7 @@ class ChatsController < ApplicationController
       @chat.update(current_background_image_id: nil)
     end
 
-    redirect_to @chat, notice: '背景設定を更新しました'
+    redirect_to @chat, notice: "背景設定を更新しました"
   end
 
   # 削除するための背景画像一覧の表示
@@ -87,9 +87,9 @@ class ChatsController < ApplicationController
         # もし削除した画像が現在の背景なら白背景に戻す
         current_user.chats.where(current_background_image_id: blob_id).update_all(current_background_image_id: nil)
       end
-      redirect_to edit_background_chat_path(@chat), notice: '選択した画像を削除しました'
+      redirect_to edit_background_chat_path(@chat), notice: "選択した画像を削除しました"
     else
-      redirect_to delete_background_images_chat_path(@chat), alert: '削除する画像を選択してください'
+      redirect_to delete_background_images_chat_path(@chat), alert: "削除する画像を選択してください"
     end
   end
 
@@ -98,7 +98,7 @@ class ChatsController < ApplicationController
     ai_character = @chat.ai_character
     @chat.destroy
     ai_character.destroy
-    redirect_to chats_path, notice: 'チャットとAIキャラクターを削除しました。'
+    redirect_to chats_path, notice: "チャットとAIキャラクターを削除しました。"
   end
 
   private
