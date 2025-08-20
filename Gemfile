@@ -40,7 +40,7 @@ gem "rubocop-performance", require: false
 gem "rubocop-rails", require: false
 gem "rubocop-rspec", require: false
 
-gem 'erb_lint'
+gem "erb_lint"
 
 gem "omniauth", "1.9.1"
 gem "omniauth-google-oauth2"
@@ -66,8 +66,8 @@ gem "image_processing", "~> 1.2"
 # AWS S3 for Active Storage
 gem "aws-sdk-s3", require: false
 
-gem 'chartkick'
-gem 'groupdate'
+gem "chartkick"
+gem "groupdate"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

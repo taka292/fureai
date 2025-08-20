@@ -23,7 +23,7 @@ class Message < ApplicationRecord
       content: base_prompt + personality_prompt
     }
 
-    [system_prompt] + messages.map { |message| { role: message.role, content: message.content } }
+    [ system_prompt ] + messages.map { |message| { role: message.role, content: message.content } }
   end
 
   # メッセージを作成したら、チャットのmessagesに追加するメソッド
@@ -45,5 +45,4 @@ class Message < ApplicationRecord
       target: "#{dom_id(self)}_messages"
     )
   end
-
-end 
+end

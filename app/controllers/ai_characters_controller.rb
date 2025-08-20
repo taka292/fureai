@@ -1,13 +1,13 @@
 class AiCharactersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_ai_character, only: [:edit, :update]
+  before_action :set_ai_character, only: [ :edit, :update ]
 
   def edit
   end
 
   def update
     if @ai_character.update(ai_character_params)
-      redirect_to chat_path(@ai_character.chats.first), notice: 'AIキャラクター設定を更新しました'
+      redirect_to chat_path(@ai_character.chats.first), notice: "AIキャラクター設定を更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -22,4 +22,4 @@ class AiCharactersController < ApplicationController
   def ai_character_params
     params.require(:ai_character).permit(:name, :personality, :avatar)
   end
-end 
+end

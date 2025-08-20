@@ -1,10 +1,10 @@
 class MentalConditionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_mental_condition, only: [:show, :edit, :update, :destroy]
+  before_action :set_mental_condition, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @mental_conditions = current_user.mental_conditions.order(recorded_at: :desc)
-    end_date = Time.current.in_time_zone('Asia/Tokyo').to_date
+    end_date = Time.current.in_time_zone("Asia/Tokyo").to_date
     start_date = end_date - 6.days
 
     # group_by_dayのformatオプションを使用して日付フォーマットを指定（日本時間）
@@ -12,7 +12,7 @@ class MentalConditionsController < ApplicationController
       .where(recorded_at: start_date.beginning_of_day..end_date.end_of_day)
       .group_by_day(:recorded_at, range: start_date..end_date, format: "%m/%d", time_zone: "Asia/Tokyo")
       .average(:mental_state)
-    
+
     @physical_chart = current_user.mental_conditions
       .where(recorded_at: start_date.beginning_of_day..end_date.end_of_day)
       .group_by_day(:recorded_at, range: start_date..end_date, format: "%m/%d", time_zone: "Asia/Tokyo")
@@ -24,19 +24,19 @@ class MentalConditionsController < ApplicationController
 
   def new
     if already_recorded_today?
-      redirect_to mental_conditions_path, alert: '本日分の記録はすでに登録されています' and return
+      redirect_to mental_conditions_path, alert: "本日分の記録はすでに登録されています" and return
     end
     @mental_condition = current_user.mental_conditions.new
   end
 
   def create
     if already_recorded_today?
-      redirect_to mental_conditions_path, alert: '本日分の記録はすでに登録されています' and return
+      redirect_to mental_conditions_path, alert: "本日分の記録はすでに登録されています" and return
     end
     @mental_condition = current_user.mental_conditions.new(mental_condition_params)
-    @mental_condition.recorded_at = Time.current.in_time_zone('Asia/Tokyo').beginning_of_day
+    @mental_condition.recorded_at = Time.current.in_time_zone("Asia/Tokyo").beginning_of_day
     if @mental_condition.save
-      redirect_to mental_conditions_path, notice: '記録を保存しました'
+      redirect_to mental_conditions_path, notice: "記録を保存しました"
     else
       render :new
     end
@@ -47,7 +47,7 @@ class MentalConditionsController < ApplicationController
 
   def update
     if @mental_condition.update(mental_condition_params)
-      redirect_to mental_conditions_path, notice: '記録を更新しました'
+      redirect_to mental_conditions_path, notice: "記録を更新しました"
     else
       render :edit
     end
@@ -55,7 +55,7 @@ class MentalConditionsController < ApplicationController
 
   def destroy
     @mental_condition.destroy
-    redirect_to mental_conditions_path, notice: '記録を削除しました'
+    redirect_to mental_conditions_path, notice: "記録を削除しました"
   end
 
   private
@@ -69,7 +69,7 @@ class MentalConditionsController < ApplicationController
   end
 
   def already_recorded_today?
-    today = Time.current.in_time_zone('Asia/Tokyo').to_date
+    today = Time.current.in_time_zone("Asia/Tokyo").to_date
     current_user.mental_conditions.where(
       recorded_at: today.beginning_of_day..today.end_of_day
     ).exists?
