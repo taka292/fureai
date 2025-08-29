@@ -1,7 +1,4 @@
-require "sidekiq/web"
-
 Rails.application.routes.draw do
-  mount Sidekiq::Web, at: "/sidekiq"
   get "messages/new"
   get "messages/create"
 
@@ -27,6 +24,7 @@ Rails.application.routes.draw do
   # チャット機能
   resources :chats do
     resources :messages, only: %i[new create]
+    resources :ai_messages, only: [ :create ]
     member do
       post :clear_messages
       get :edit_background
@@ -41,5 +39,9 @@ Rails.application.routes.draw do
 
   resource :profile, only: [ :edit, :update ], controller: "profiles"
 
-  resources :mental_conditions
-end
+      resources :mental_conditions
+
+    namespace :api do
+      post "ai_response_simple", to: "ai_responses#create_simple"
+    end
+  end

@@ -24,10 +24,6 @@ gem "devise"
 
 # OpenAI API用
 gem "ruby-openai"
-# 非同期ジョブ用
-gem "sidekiq"
-
-gem "redis"
 
 # エラーメッセージの日本語化
 gem "rails-i18n"
