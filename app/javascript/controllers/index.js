@@ -15,3 +15,6 @@ application.register("message-avatar", MessageAvatarController)
 
 import RatingController from "./rating_controller"
 application.register("rating", RatingController)
+
+import AiChatController from "./ai_chat_controller"
+application.register("ai-chat", AiChatController)

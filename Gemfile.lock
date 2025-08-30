@@ -321,10 +321,6 @@ GEM
     rdoc (6.14.1)
       erb
       psych (>= 4.0.0)
-    redis (5.4.0)
-      redis-client (>= 0.22.0)
-    redis-client (0.25.0)
-      connection_pool
     regexp_parser (2.10.0)
     reline (0.6.1)
       io-console (~> 0.5)
@@ -379,12 +375,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sidekiq (7.3.9)
-      base64
-      connection_pool (>= 2.3.0)
-      logger
-      rack (>= 2.2.4)
-      redis-client (>= 0.22.2)
     slim (5.2.1)
       temple (~> 0.10.0)
       tilt (>= 2.1.0)
@@ -475,7 +465,6 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.2.2)
   rails-i18n
-  redis
   rubocop
   rubocop-performance
   rubocop-rails
@@ -483,7 +472,6 @@ DEPENDENCIES
   rubocop-rspec
   ruby-openai
   selenium-webdriver
-  sidekiq
   slim-rails
   sprockets-rails
   stimulus-rails

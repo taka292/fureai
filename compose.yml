@@ -15,14 +15,6 @@ services:
       timeout: 5s
       retries: 5
 
-  redis:
-    image: "redis:7.0-alpine"
-    volumes:
-      - redis_volume:/data
-    command: redis-server --appendonly yes
-    ports:
-      - "6379:6379"
-
   web:
     build:
       context: .
@@ -36,26 +28,12 @@ services:
       - node_modules:/myapp/node_modules
     environment:
       TZ: Asia/Tokyo
-      REDIS_URL: redis://redis:6379/0
     ports:
       - "3000:3000"
     depends_on:
       - db
-      - redis
-
-  sidekiq:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    command: bash -c "bundle install && bundle exec sidekiq"
-    volumes:
-      - .:/myapp
-    depends_on:
-      - db
-      - redis
 
 volumes:
   bundle_data:
   postgresql_data:
   node_modules:
-  redis_volume:
