@@ -1,7 +1,5 @@
 class Message < ApplicationRecord
   include ActionView::RecordIdentifier
-  after_create_commit -> { broadcast_created }
-  after_update_commit -> { broadcast_updated }
 
   enum role: { system: 0, assistant: 10, user: 20 }
   belongs_to :chat

@@ -6,14 +6,28 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @chat = Chat.find_or_create_by(id: params[:chat_id])
-    @message = @chat.messages.create(message_params.merge(role: "user"))
-    # ジョブを定義する
-    # perform_syncはジョブを非同期で実行するためsidekiqのメソッド
-    GetAiResponse.perform_async(@message.chat_id)
+    begin
+      @chat = Chat.find_or_create_by(id: params[:chat_id])
+      @message = @chat.messages.create(message_params.merge(role: "user"))
 
-    respond_to do |format|
-      format.turbo_stream
+      respond_to do |format|
+        format.html do
+          redirect_to chat_path(@chat)
+        end
+        format.json do
+          render json: {
+            success: true,
+            html: render_to_string(partial: "messages/message",
+                                  locals: { message: @message, scroll_to: true },
+                                  formats: [ :html ])
+          }
+        end
+      end
+    rescue => e
+      respond_to do |format|
+        format.html { redirect_to chat_path(@chat), alert: "エラーが発生しました" }
+        format.json { render json: { error: e.message }, status: :unprocessable_entity }
+      end
     end
   end
 

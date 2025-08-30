@@ -7,7 +7,11 @@
 <% else %>
   <% bg_style = "background-color: #fff;" %>
 <% end %>
-<div class="min-h-screen flex flex-col items-stretch" style="<%= bg_style %>" data-controller="chat-scroll">
+<div class="min-h-screen flex flex-col items-stretch" style="<%= bg_style %>" 
+     data-controller="ai-chat chat-scroll"
+     data-ai-chat-chat-id-value="<%= @chat.id %>"
+     data-ai-chat-ai-character-name-value="<%= @chat.ai_character.name %>"
+     data-ai-chat-ai-character-avatar-url-value="<%= @chat.ai_character.avatar.attached? ? url_for(@chat.ai_character.avatar) : '' %>">
   <!-- チャット全体のラッパー -->
   <div class="w-full flex flex-col flex-1 bg-transparent">
     <!-- ヘッダー -->
@@ -68,12 +72,40 @@
     </div>
 
     <!-- メッセージ一覧 -->
-    <div id="<%= dom_id(@chat) %>_messages" class="space-y-2 w-full px-2 py-4 overflow-y-auto pb-20" style="height: calc(100vh - 200px);" data-chat-scroll-target="messages">
+    <div id="<%= dom_id(@chat) %>_messages" 
+         class="space-y-2 w-full px-2 py-4 overflow-y-auto pb-20" 
+         style="height: calc(100vh - 200px);" 
+         data-chat-scroll-target="messages"
+         data-ai-chat-target="messages">
       <%= render @messages %>
     </div>
 
-    <!-- 入力欄 -->
-    <%= render partial: "messages/form", locals: { chat: @chat } %>
+    <!-- 入力フォーム -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 z-10 pb-5 md:pb-2">
+      <%= form_with model: Message.new, 
+                    url: chat_messages_path(@chat), 
+                    local: true,
+                    method: :post,
+                    data: { 
+                      action: "submit->ai-chat#sendMessage",
+                      ai_chat_target: "form"
+                    } do |f| %>
+        
+        <div class="flex items-center w-full">
+          <%= f.text_field :content, 
+                          placeholder: "メッセージを入力", 
+                          "x-on:keydown.cmd.enter" => "$event.target.form.requestSubmit();", 
+                          class: "flex-1 rounded-full border px-4 py-2 mr-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500",
+                          data: { ai_chat_target: "input" } %>
+          
+          <%= f.submit "送信", 
+                       class: "bg-sky-400 text-white rounded-full px-4 py-2 hover:bg-sky-500 flex items-center flex-shrink-0",
+                       data: { ai_chat_target: "submitButton" } do %>
+            <span class="material-symbols-outlined text-sm">send</span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
   <!-- DaisyUIモーダル -->

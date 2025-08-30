@@ -42,6 +42,6 @@ Rails.application.routes.draw do
       resources :mental_conditions
 
     namespace :api do
-      post "ai_response_simple", to: "ai_responses#create_simple"
+      post "ai_response", to: "ai_responses#create"
     end
   end
