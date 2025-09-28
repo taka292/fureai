@@ -34,7 +34,7 @@ class MentalConditionsController < ApplicationController
       redirect_to mental_conditions_path, alert: "本日分の記録はすでに登録されています" and return
     end
     @mental_condition = current_user.mental_conditions.new(mental_condition_params)
-    @mental_condition.recorded_at = Time.current.in_time_zone("Asia/Tokyo").beginning_of_day
+    @mental_condition.recorded_at = Time.current.in_time_zone("Asia/Tokyo")
     if @mental_condition.save
       redirect_to mental_conditions_path, notice: "記録を保存しました"
     else
@@ -46,7 +46,9 @@ class MentalConditionsController < ApplicationController
   end
 
   def update
-    if @mental_condition.update(mental_condition_params)
+    @mental_condition.assign_attributes(mental_condition_params)
+    @mental_condition.recorded_at = Time.current.in_time_zone("Asia/Tokyo")
+    if @mental_condition.save
       redirect_to mental_conditions_path, notice: "記録を更新しました"
     else
       render :edit
