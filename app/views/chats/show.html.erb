@@ -68,7 +68,7 @@
 
     <!-- 日付区切り -->
     <div class="text-center text-xs text-gray-400 my-2">
-      <%= @messages.first&.created_at&.strftime("%Y.%m.%d") %>
+      <%= l(@messages.first&.created_at, format: :default) if @messages.first&.created_at %>
     </div>
 
     <!-- メッセージ一覧 -->

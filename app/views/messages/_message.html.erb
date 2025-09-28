@@ -15,7 +15,7 @@
     <div class="<%= message.user? ? "bg-teal-100 text-gray-800" : "bg-gray-200 text-gray-800" %> rounded-2xl px-4 py-2 max-w-xs md:max-w-lg break-words shadow relative">
       <%= message.content %>
       <div class="text-xs text-gray-500 text-right mt-1">
-        <%= message.created_at.strftime("%H:%M") %>
+        <%= l(message.created_at, format: :time_only) %>
       </div>
     </div>
   </div>

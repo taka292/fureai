@@ -21,7 +21,7 @@
           <div class="flex-1 min-w-0">
             <div class="flex justify-between items-center">
               <span class="font-bold text-gray-900 text-base"><%= chat.ai_character.name %></span>
-              <span class="text-xs text-gray-400 ml-2"><%= l(chat.updated_at, format: :short) %></span>
+              <span class="text-xs text-gray-400 ml-2"><%= l(chat.updated_at, format: :default) %></span>
             </div>
             <div class="text-gray-700 text-sm truncate">
               <%= chat.messages.last&.content&.truncate(40) || "まだ会話がありません" %>
