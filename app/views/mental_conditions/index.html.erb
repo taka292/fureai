@@ -1,4 +1,8 @@
-<h2 class="text-xl font-bold mb-4 text-text">コンディションの推移</h2>
+<div class="flex items-center justify-between mb-4"></div>
+  <h2 class="text-xl font-bold text-text">コンディションの推移</h2>
+    <span class="text-xs text-textSub">本日分は記録済み</span>
+    <%= link_to '今日の記録をする', new_mental_condition_path, class: 'btn btn-primary btn-sm' %>
+  </div>
 <div class="mb-8 overflow-x-auto w-full">
   <%= area_chart [
     {name: "こころ", data: @mental_chart},

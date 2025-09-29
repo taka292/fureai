@@ -4,6 +4,7 @@ class MentalConditionsController < ApplicationController
 
   def index
     @mental_conditions = current_user.mental_conditions.order(recorded_at: :desc)
+    @already_recorded_today = already_recorded_today?
     end_date = Time.current.in_time_zone("Asia/Tokyo").to_date
     start_date = end_date - 6.days
 
