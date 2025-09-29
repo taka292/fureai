@@ -16,8 +16,9 @@ export default class extends Controller {
     
     if (container && input) {
       container.addEventListener('click', (e) => {
-        if (e.target.dataset.index !== undefined) {
-          const index = parseInt(e.target.dataset.index)
+        const target = e.target.closest('[data-index]')
+        if (target && container.contains(target)) {
+          const index = parseInt(target.dataset.index)
           this.updateRating(container, input, index, type)
         }
       })
@@ -28,12 +29,13 @@ export default class extends Controller {
     const icons = container.querySelectorAll('span')
     const states = ['very_bad', 'bad', 'normal', 'good', 'very_good']
     
+    const activeClass = type === 'mental' ? 'text-red-500' : 'text-orange-400'
     icons.forEach((icon, index) => {
+      icon.classList.remove('text-red-500', 'text-yellow-500', 'text-orange-400')
       if (index <= selectedIndex) {
         icon.classList.remove('text-gray-300')
-        icon.classList.add(type === 'mental' ? 'text-red-500' : 'text-yellow-500')
+        icon.classList.add(activeClass)
       } else {
-        icon.classList.remove(type === 'mental' ? 'text-red-500' : 'text-yellow-500')
         icon.classList.add('text-gray-300')
       }
     })
