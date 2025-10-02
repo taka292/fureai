@@ -1,8 +1,11 @@
-<div class="flex items-center justify-between mb-4"></div>
+<div class="flex items-center justify-between mb-4">
   <h2 class="text-xl font-bold text-text">コンディションの推移</h2>
+  <% if @already_recorded_today %>
     <span class="text-xs text-textSub">本日分は記録済み</span>
+  <% else %>
     <%= link_to '今日の記録をする', new_mental_condition_path, class: 'btn btn-primary btn-sm' %>
-  </div>
+  <% end %>
+</div>
 <div class="mb-8 overflow-x-auto w-full">
   <%= area_chart [
     {name: "こころ", data: @mental_chart},
