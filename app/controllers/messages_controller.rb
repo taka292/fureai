@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
 
   def create
     begin
-      @chat = Chat.find_or_create_by(id: params[:chat_id])
+      @chat = current_user.chats.find(params[:chat_id])
       @message = @chat.messages.create(message_params.merge(role: "user"))
 
       respond_to do |format|
