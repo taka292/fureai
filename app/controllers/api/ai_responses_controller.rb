@@ -2,7 +2,7 @@ class Api::AiResponsesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @chat = Chat.find(params[:chat_id])
+    @chat = current_user.chats.find(params[:chat_id])
 
     begin
       # OpenAI APIを通常モードで呼び出し
