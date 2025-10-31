@@ -5,6 +5,18 @@ class Message < ApplicationRecord
   belongs_to :chat
   belongs_to :user, optional: true
 
+  # バリデーション
+  validates :content,
+            presence: true,
+            length: {
+              minimum: 1,
+              maximum: 10000,
+              too_short: "メッセージを入力してください",
+              too_long: "メッセージは10,000文字以内で入力してください"
+            }
+  validates :role, presence: true
+  validates :chat_id, presence: true
+
   # メッセージをOpenAIのAPI用のフォーマットに変換するメソッド(パフォーマンスを考慮し、プロンプト等のsystemメッセージは先頭に、それ以外は最新の50件を取得)
   def self.for_openai(messages)
     # 最初のメッセージからチャットとAIキャラクターを取得

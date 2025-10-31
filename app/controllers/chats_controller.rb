@@ -2,7 +2,7 @@ class ChatsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_chat, only: [
     :show, :clear_messages, :edit_background, :update_background,
-    :delete_background_images, :destroy_selected_background_images
+    :delete_background_images, :destroy_selected_background_images, :destroy
   ]
 
   def index
@@ -94,7 +94,6 @@ class ChatsController < ApplicationController
   end
 
   def destroy
-    @chat = current_user.chats.find(params[:id])
     ai_character = @chat.ai_character
     @chat.destroy
     ai_character.destroy
@@ -105,6 +104,11 @@ class ChatsController < ApplicationController
 
   def set_chat
     @chat = current_user.chats.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    respond_to do |format|
+      format.html { redirect_to chats_path, alert: "チャットが見つかりません" }
+      format.json { render json: { error: "チャットが見つかりません" }, status: :not_found }
+    end
   end
 
   def ai_character_params
