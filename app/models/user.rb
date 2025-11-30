@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :ai_characters, dependent: :destroy
   has_many :mental_conditions, dependent: :destroy
+  has_many :diaries, dependent: :destroy
   has_many_attached :background_images
 
   after_create :create_default_ai_characters

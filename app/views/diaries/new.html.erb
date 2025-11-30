@@ -1,0 +1,12 @@
+<div class="h-full w-full flex-1 flex flex-col justify-start items-center bg-base-100 overflow-auto py-4 pb-20">
+  <div class="flex flex-col items-center mb-8 w-full">
+    <h2 class="text-3xl font-bold text-text mb-2 text-center">日記を書く</h2>
+    <p class="text-base text-textSub text-center mb-1">今日の出来事や気持ちを記録しましょう。</p>
+    <p class="text-xs text-gray-400 text-center">過去の日付にも日記を付けられます。</p>
+  </div>
+  <div class="w-full max-w-md">
+    <%= render 'form', diary: @diary %>
+  </div>
+</div>
+
+

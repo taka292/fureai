@@ -39,7 +39,8 @@ Rails.application.routes.draw do
 
   resource :profile, only: [ :edit, :update ], controller: "profiles"
 
-      resources :mental_conditions
+  resources :mental_conditions
+  resources :diaries
 
     namespace :api do
       post "ai_response", to: "ai_responses#create"
