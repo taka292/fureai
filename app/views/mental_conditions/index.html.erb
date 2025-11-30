@@ -10,7 +10,16 @@
   <%= area_chart [
     {name: "こころ", data: @mental_chart},
     {name: "からだ", data: @physical_chart}
-  ], height: '300px', library: {colors: ['#ef4444', '#fbbf24'], spanGaps: true} %>
+  ], height: '300px', library: {
+    colors: ['#ef4444', '#fbbf24'],
+    spanGaps: true,
+    scales: {
+      y: {
+        min: 0,
+        max: 5,
+      }
+    }
+  } %>
 </div>
 
 <h2 class="text-xl font-bold mb-4 text-text">記録一覧</h2>
