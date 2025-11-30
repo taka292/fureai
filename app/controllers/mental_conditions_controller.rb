@@ -9,15 +9,18 @@ class MentalConditionsController < ApplicationController
     start_date = end_date - 6.days
 
     # group_by_dayのformatオプションを使用して日付フォーマットを指定（日本時間）
+    # enumの値（0-4）を+1して1-5の範囲に変換（グラフの縦軸を0-5にするため）
     @mental_chart = current_user.mental_conditions
       .where(recorded_at: start_date.beginning_of_day..end_date.end_of_day)
       .group_by_day(:recorded_at, range: start_date..end_date, format: "%m/%d", time_zone: "Asia/Tokyo")
       .average(:mental_state)
+      .transform_values { |v| v.nil? ? nil : v + 1 }
 
     @physical_chart = current_user.mental_conditions
       .where(recorded_at: start_date.beginning_of_day..end_date.end_of_day)
       .group_by_day(:recorded_at, range: start_date..end_date, format: "%m/%d", time_zone: "Asia/Tokyo")
       .average(:physical_state)
+      .transform_values { |v| v.nil? ? nil : v + 1 }
   end
 
   def show
