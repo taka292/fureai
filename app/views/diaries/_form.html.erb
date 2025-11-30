@@ -1,0 +1,28 @@
+<%= form_with(model: diary) do |f| %>
+  <div class="max-w-md mx-auto w-full">
+    <div class="bg-base-100 rounded-xl shadow p-6 mb-6">
+      <%= f.label :recorded_at, "日付", class: "block text-lg font-bold text-text mb-2" %>
+      <%= f.date_field :recorded_at, value: diary.recorded_at&.strftime("%Y-%m-%d"), class: "input input-bordered w-full" %>
+      <% if diary.errors[:recorded_at].any? %>
+        <p class="text-red-500 text-sm mt-1"><%= diary.errors[:recorded_at].first %></p>
+      <% end %>
+    </div>
+
+    <div class="bg-base-100 rounded-xl shadow p-6 mb-6">
+      <%= f.label :content, "日記", class: "block text-lg font-bold text-text mb-2" %>
+      <%= f.text_area :content, rows: 10, placeholder: "今日の出来事や気持ちを自由に書いてください", class: "textarea textarea-bordered w-full" %>
+      <% if diary.errors[:content].any? %>
+        <p class="text-red-500 text-sm mt-1"><%= diary.errors[:content].first %></p>
+      <% end %>
+      <% if diary.errors[:base].any? %>
+        <p class="text-red-500 text-sm mt-1"><%= diary.errors[:base].first %></p>
+      <% end %>
+    </div>
+
+    <div class="flex justify-end space-x-2">
+      <%= link_to 'キャンセル', mental_conditions_path, class: "btn btn-ghost px-8 py-2 font-bold shadow" %>
+      <%= f.submit "保存", class: "btn btn-primary px-8 py-2 font-bold shadow" %>
+    </div>
+  </div>
+<% end %>
+
